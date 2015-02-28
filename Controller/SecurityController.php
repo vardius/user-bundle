@@ -1,12 +1,11 @@
 <?php
 /**
- * This file is part of the zamocno package.
+ * This file is part of the vardius/user-bundle package.
  *
  * Created by Rafał Lorenz <vardius@gmail.com>.
  */
 
 namespace Vardius\Bundle\UserBundle\Controller;
-
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

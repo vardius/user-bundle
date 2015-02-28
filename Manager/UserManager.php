@@ -1,12 +1,11 @@
 <?php
 /**
- * This file is part of the zamocno package.
+ * This file is part of the vardius/user-bundle package.
  *
  * Created by Rafał Lorenz <vardius@gmail.com>.
  */
 
 namespace Vardius\Bundle\UserBundle\Manager;
-
 
 use Doctrine\ORM\EntityManager;
 use Vardius\Bundle\UserBundle\Entity\UserRepository;

@@ -1,12 +1,11 @@
 <?php
 /**
- * This file is part of the zamocno package.
+ * This file is part of the vardius/user-bundle package.
  *
  * Created by Rafał Lorenz <vardius@gmail.com>.
  */
 
 namespace Vardius\Bundle\UserBundle\DataFixtures\ORM;
-
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
