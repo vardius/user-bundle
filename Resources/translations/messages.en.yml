@@ -1,0 +1,31 @@
+change_password:
+    success: Your password has been changed
+    form:
+        old_password: Current passowrd
+        new_password: New password
+        button: Change password
+
+reset_password:
+    error: User with that email not found
+    success: New password ahs been send to your email
+    form:
+        email: Email
+        password: Password
+        button: Reset password
+
+edit_user:
+    form:
+        email: Email
+        button: Edit
+
+registration:
+    form:
+        terms: Terms
+        button: Register
+
+user:
+    form:
+        email: Email
+        first_name: Password
+        second_name: Confirm
+        username: Username

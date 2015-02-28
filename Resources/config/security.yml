@@ -1,0 +1,37 @@
+security:
+    encoders:
+        Vardius\Bundle\UserBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+
+    providers:
+        vardius:
+            id: vardius_user.user_provider
+
+    firewalls:
+        admin_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path: login_route
+                check_path: login_check
+                csrf_provider: form.csrf_provider
+            logout:
+                path:   logout_route
+                target: login_route
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/password-reset, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }

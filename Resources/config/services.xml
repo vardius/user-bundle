@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="vardius_user.user_provider.class">Vardius\Bundle\UserBundle\Security\User\UserProvider</parameter>
+        <parameter key="vardius_user.user_manager.class">Vardius\Bundle\UserBundle\Manager\UserManager</parameter>
+        <parameter key="vardius_user.mail_manager.class">Vardius\Bundle\UserBundle\Manager\MailManager</parameter>
+        <!--FORMS-->
+        <parameter key="vardius_user.form.type.registration.class">Vardius\Bundle\UserBundle\Form\Type\RegistrationType</parameter>
+        <parameter key="vardius_user.form.type.change_password.class">Vardius\Bundle\UserBundle\Form\Type\ChangePasswordType</parameter>
+        <parameter key="vardius_user.form.type.reset_password.class">Vardius\Bundle\UserBundle\Form\Type\ResetPasswordType</parameter>
+        <parameter key="vardius_user.form.type.edit_user.class">Vardius\Bundle\UserBundle\Form\Type\EditUserType</parameter>
+        <parameter key="vardius_user.form.type.user.class">Vardius\Bundle\UserBundle\Form\Type\UserType</parameter>
+    </parameters>
+    <services>
+        <service id="vardius_user.user_manager" class="%vardius_user.user_manager.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+        <service id="vardius_user.user_provider" class="%vardius_user.user_provider.class%">
+            <argument type="service" id="vardius_user.user_manager"/>
+        </service>
+        <service id="vardius_user.mail_manager" class="%vardius_user.mail_manager.class%">
+            <argument type="service" id="mailer"/>
+            <argument type="service" id="request_stack"/>
+            <argument>%vardius_user.mail_from%</argument>
+        </service>
+        <!--FORMS-->
+        <service id="vardius_user.form.type.user" class="%vardius_user.form.type.user.class%">
+            <argument>%vardius_user.username%</argument>
+
+            <tag name="form.type" alias="vardius_user" />
+        </service>
+        <service id="vardius_user.form.type.edit_user" class="%vardius_user.form.type.edit_user.class%">
+            <argument>%vardius_user.username%</argument>
+
+            <tag name="form.type" alias="vardius_edit_user" />
+        </service>
+        <service id="vardius_user.form.type.registration" class="%vardius_user.form.type.registration.class%">
+            <tag name="form.type" alias="vardius_registration" />
+        </service>
+        <service id="vardius_user.form.type.change_password" class="%vardius_user.form.type.change_password.class%">
+            <tag name="form.type" alias="vardius_change_password" />
+        </service>
+        <service id="vardius_user.form.type.reset_password" class="%vardius_user.form.type.reset_password.class%">
+            <tag name="form.type" alias="vardius_reset_password" />
+        </service>
+    </services>
+</container>

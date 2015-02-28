@@ -1,0 +1,30 @@
+{
+    "name": "vardius/user-bundle",
+    "description": "Symfony user bundle",
+    "keywords": [
+        "user", "user bundle", "symfony2", "bundle", "symfony"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/Vardius/user-bundle",
+    "authors": [
+        {
+          "name": "Rafał Lorenz",
+          "email": "vardius@gmail.com",
+          "homepage": "http://rafallorenz.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "symfony/symfony": "2.6.*",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*"
+    },
+    "target-dir": "Vardius/Bundle/UserBundle",
+    "autoload": {
+        "psr-0": { "Vardius\\Bundle\\UserBundle": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}

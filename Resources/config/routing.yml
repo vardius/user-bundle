@@ -1,0 +1,31 @@
+login_route:
+    path:     /login
+    defaults: { _controller: VardiusUserBundle:Security:login }
+
+logout_route:
+    path:     /logout
+    defaults: { _controller: VardiusUserBundle:Security:logout }
+
+login_check:
+    path:     /login-check
+    defaults: { _controller: VardiusUserBundle:Security:loginCheck }
+
+account_register:
+    path:     /register
+    defaults: { _controller: VardiusUserBundle:Registration:register }
+
+change_password:
+    path:     /password-change
+    defaults: { _controller: VardiusUserBundle:ChangePassword:changePassword }
+
+reset_password:
+    path:     /password-reset
+    defaults: { _controller: VardiusUserBundle:Reset:resetPassword }
+
+profile_show:
+    path:     /profile
+    defaults: { _controller: VardiusUserBundle:Profile:show }
+
+profile_edit:
+    path:     /profile/edit
+    defaults: { _controller: VardiusUserBundle:Profile:edit}
