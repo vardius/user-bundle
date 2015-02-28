@@ -3,6 +3,8 @@ Vardius - User Bundle
 
 User Bundle provides simple doctrine user
 
+This is work in progress, dispatch events in next update.
+
 ABOUT
 ==================================================
 Contributors:

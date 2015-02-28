@@ -33,20 +33,18 @@ class ResetController extends Controller
 
         if ($request->isMethod('POST')) {
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $email = $form['email']->getData();
                 $user = $this->get('vardius_user.user_manager')->findUserBy([
                     'email' => $email,
                 ]);
 
                 if (!$user) {
-                    $error = new FormError('reset_password.error');
-                    $form->get('email')->addError($error);
+                    $form->get('email')->addError(new FormError('reset_password.error'));
                 } else {
                     $password = substr(md5(uniqid()), 0, 12);
 
                     $mailManager = $this->get('vardius_user.mail_manager');
-                    $mailManager->sendEmail('New Password', $user->getEmail(), $this->renderView(
+                    $mailManager->sendEmail('reset_password.mail.subject', $user->getEmail(), $this->renderView(
                         '@VardiusUser/Reset/newPassword.html.twig', [
                         'password' => $password
                     ]));
@@ -59,10 +57,7 @@ class ResetController extends Controller
                     $em->persist($user);
                     $em->flush();
 
-                    $request->getSession()->getFlashBag()->add(
-                        'notice',
-                        'reset_password.success'
-                    );
+                    $request->getSession()->getFlashBag()->add('notice', 'reset_password.success');
 
                     return $this->redirect($this->generateUrl('login_route'));
                 }

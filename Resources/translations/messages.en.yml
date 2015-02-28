@@ -8,6 +8,8 @@ change_password:
 reset_password:
     error: User with that email not found
     success: New password ahs been send to your email
+    mail:
+        subject: New Password
     form:
         email: Email
         password: Password
