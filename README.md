@@ -3,6 +3,8 @@ Vardius - User Bundle
 
 User Bundle provides simple doctrine user
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/6fa73f37-04c8-493c-b690-55c85de3f6da/big.png)](https://insight.sensiolabs.com/projects/6fa73f37-04c8-493c-b690-55c85de3f6da)
+
 This is work in progress, dispatch events in next update.
 
 ABOUT
