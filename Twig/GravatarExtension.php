@@ -12,7 +12,7 @@ namespace Vardius\Bundle\UserBundle\Twig;
  *
  * @author Rafał Lorenz <vardius@gmail.com>
  */
-class GravatarExtension
+class GravatarExtension extends \Twig_Extension
 {
     /**
      * Returns a list of filters.
