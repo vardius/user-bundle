@@ -24,9 +24,6 @@ class ResetPasswordType extends AbstractType
             ->add('email', 'email', [
                 'label' => 'reset_password.form.email',
             ])
-            ->add('password', 'password', [
-                'label' => 'reset_password.form.password',
-            ])
             ->add('reset_password', 'submit', [
                 'label' => 'reset_password.form.button',
             ]);

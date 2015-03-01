@@ -19,7 +19,7 @@ change_password:
     defaults: { _controller: VardiusUserBundle:ChangePassword:changePassword }
 
 reset_password:
-    path:     /password-reset
+    path:     /reset
     defaults: { _controller: VardiusUserBundle:Reset:resetPassword }
 
 profile_show:

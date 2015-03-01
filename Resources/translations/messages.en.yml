@@ -7,12 +7,11 @@ change_password:
 
 reset_password:
     error: User with that email not found
-    success: New password ahs been send to your email
+    success: New password has been send to provided email
     mail:
         subject: New Password
     form:
         email: Email
-        password: Password
         button: Reset password
 
 edit_user:
@@ -31,3 +30,10 @@ user:
         first_name: Password
         second_name: Confirm
         username: Username
+
+login:
+    username: Username
+    password: Password
+    checkbox: Keep me logged in
+    button: Login
+    forgot_password: Forgot password?

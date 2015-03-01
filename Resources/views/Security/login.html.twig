@@ -3,17 +3,17 @@
 {% endif %}
 
 <form action="{{ path('login_check') }}" method="post">
-    <label for="username">Username:</label>
+    <label for="username">{{ 'login.username'|trans }}:</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
-    <label for="password">Password:</label>
+    <label for="password">{{ 'login.password'|trans }}:</label>
     <input type="password" id="password" name="_password" />
 
     <input type="checkbox" id="remember_me" name="_remember_me" checked />
-    <label for="remember_me">Keep me logged in</label>
+    <label for="remember_me">{{ 'login.checkbox'|trans }}</label>
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    <button type="submit">login</button>
+    <button type="submit">{{ 'login.button'|trans }}</button>
 </form>
-<a href="{{ path('reset_password') }}">Forgot password?</a>
+<a href="{{ path('reset_password') }}">{{ 'login.forgot_password'|trans }}</a>
