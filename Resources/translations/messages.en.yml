@@ -3,6 +3,7 @@ change_password:
     form:
         old_password: Current passowrd
         new_password: New password
+        new_password_repeat: Repeat password
         button: Change password
 
 reset_password:
