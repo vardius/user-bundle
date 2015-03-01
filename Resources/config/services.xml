@@ -14,6 +14,8 @@
         <parameter key="vardius_user.form.type.reset_password.class">Vardius\Bundle\UserBundle\Form\Type\ResetPasswordType</parameter>
         <parameter key="vardius_user.form.type.edit_user.class">Vardius\Bundle\UserBundle\Form\Type\EditUserType</parameter>
         <parameter key="vardius_user.form.type.user.class">Vardius\Bundle\UserBundle\Form\Type\UserType</parameter>
+        <!--TWIG-->
+        <parameter key="vardius_user.gravatar.twig_extension.class">Vardius\Bundle\UserBundle\Twig\GravatarExtension</parameter>
     </parameters>
     <services>
         <service id="vardius_user.user_manager" class="%vardius_user.user_manager.class%">
@@ -46,6 +48,11 @@
         </service>
         <service id="vardius_user.form.type.reset_password" class="%vardius_user.form.type.reset_password.class%">
             <tag name="form.type" alias="vardius_reset_password" />
+        </service>
+        <!--TWIG-->
+        <service id="vardius_user.gravatar.twig_extension" class="%vardius_user.gravatar.twig_extension.class%" public="false">
+
+            <tag name="twig.extension" />
         </service>
     </services>
 </container>
