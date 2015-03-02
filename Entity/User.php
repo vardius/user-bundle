@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vardius\Bundle\UserBundle\Entity\UserInterface as VardiusUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vardius\Bundle\UserBundle\Validator\Constraints as VardiusAssert;
 
@@ -23,7 +24,7 @@ use Vardius\Bundle\UserBundle\Validator\Constraints as VardiusAssert;
  * @ORM\Table(name="vardius_users")
  * @ORM\Entity(repositoryClass="Vardius\Bundle\UserBundle\Entity\UserRepository")
  */
-class User implements AdvancedUserInterface, \Serializable, EquatableInterface, UserInterface
+class User implements AdvancedUserInterface, \Serializable, EquatableInterface, VardiusUserInterface
 {
     /**
      * @var integer

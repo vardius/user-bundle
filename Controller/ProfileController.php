@@ -37,7 +37,9 @@ class ProfileController extends Controller
     public function editAction(Request $request)
     {
         $user = $this->getUser();
-        $form = $this->createForm('vardius_edit_user', $user);
+        $formType = $this->container->getParameter('vardius_user.user_edit_form') ?: 'vardius_edit_user';
+
+        $form = $this->createForm($formType, $user);
 
         $form->handleRequest($request);
 

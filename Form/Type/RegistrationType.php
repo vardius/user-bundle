@@ -18,10 +18,18 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class RegistrationType extends AbstractType
 {
+    /** @var  string */
+    protected $userForm;
+
+    function __construct($userForm)
+    {
+        $this->userForm = $userForm ?: 'vardius_user';
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user', 'vardius_user', [
+            ->add('user', $this->userForm, [
                 'label' => false,
             ])
             ->add('terms', 'checkbox', [

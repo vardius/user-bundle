@@ -27,7 +27,8 @@ Installation
 2. Enable the VardiusUserBundle
 3. Add roles
 4. Configure the VardiusUserBundle
-
+5. Add custom properties to User
+6. Overriding a Form Type
 
 ### 1. Download using composer
 
@@ -124,7 +125,7 @@ security.yml
     #app/config/security.yml
     
     encoders:
-        Vardius\Bundle\UserBundle\Entity\User:
+        Vardius\Bundle\UserBundle\Entity\UserInterface:
             algorithm: bcrypt
             cost: 12
 
@@ -159,6 +160,145 @@ security.yml
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/password-reset, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER }
+```
+
+### 5. Add custom properties to your user
+Create user class and extends Vardius\Bundle\UserBundle\Entity\User  as a BaseUser
+
+``` php
+// src/Acme/UserBundle/Entity/User.php
+    <?php
+    
+    use Vardius\Bundle\UserBundle\Entity\User as BaseUser;
+    use Doctrine\ORM\Mapping as ORM;
+    use Symfony\Component\Validator\Constraints as Assert;
+    
+    /**
+     * @ORM\Table(name="acne_users")
+     * @ORM\Entity(repositoryClass="Vardius\Bundle\UserBundle\Entity\UserRepository")
+     */
+    class User extends BaseUser
+    {
+        /**
+         * @ORM\Column(type="string", length=255)
+         *
+         * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+         * @Assert\Length(
+         *     min=3,
+         *     max="255",
+         *     minMessage="The name is too short.",
+         *     maxMessage="The name is too long.",
+         *     groups={"Registration", "Profile"}
+         * )
+         */
+        protected $name;
+    
+        // ...
+    }
+```
+
+next register your class in config.yml
+
+``` yaml
+    #app/config/cinfig.yml
+    
+    vardius_user:
+        user_class: AcmeUserBundle:User
+```
+
+### 6. Overriding a Form Type
+If you want user to put his name when register override user type form
+
+``` php
+    // src/Acme/UserBundle/Form/Type/UserType.php
+    <?php
+    
+    namespace Acme\UserBundle\Form\Type;
+    
+    use Symfony\Component\Form\AbstractType;
+    use Symfony\Component\Form\FormBuilderInterface;
+    
+    class UserType extends AbstractType
+    {
+        public function buildForm(FormBuilderInterface $builder, array $options)
+        {
+            // add your custom field
+            $builder->add('name');
+        }
+    
+        public function getParent()
+        {
+            return 'vardius_user';
+        }
+    
+        public function getName()
+        {
+            return 'acme_user';
+        }
+    }
+```
+
+register your form as a service
+
+``` xml
+    <service id="acme_user.user.form.type" class="Acme\UserBundle\Form\Type\UserType">
+        <tag name="form.type" alias="acme_user" />
+    </service>
+```
+
+next register your class in config.yml
+
+``` yaml
+    #app/config/cinfig.yml
+    
+    vardius_user:
+        user_form: acme_user
+```
+
+to override user edit form provide
+
+``` php
+    // src/Acme/UserBundle/Form/Type/UserEditType.php
+    <?php
+    
+    namespace Acme\UserBundle\Form\Type;
+    
+    use Symfony\Component\Form\AbstractType;
+    use Symfony\Component\Form\FormBuilderInterface;
+    
+    class UserEditType extends AbstractType
+    {
+        public function buildForm(FormBuilderInterface $builder, array $options)
+        {
+            // add your custom field
+            $builder->add('name');
+        }
+    
+        public function getParent()
+        {
+            return 'vardius_edit_user';
+        }
+    
+        public function getName()
+        {
+            return 'acme_user_edit';
+        }
+    }
+```
+
+register your form as a service
+
+``` xml
+    <service id="acme_user.user_edit.form.type" class="Acme\UserBundle\Form\Type\UserEditType">
+        <tag name="form.type" alias="acme_user_edit" />
+    </service>
+```
+
+``` yaml
+    #app/config/cinfig.yml
+    
+    vardius_user:
+        user_edit_form: acme_edit_user
 ```
 
 RELEASE NOTES

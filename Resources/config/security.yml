@@ -1,6 +1,6 @@
 security:
     encoders:
-        Vardius\Bundle\UserBundle\Entity\User:
+        Vardius\Bundle\UserBundle\Entity\UserInterface:
             algorithm: bcrypt
             cost: 12
 

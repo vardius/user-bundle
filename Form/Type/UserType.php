@@ -10,6 +10,7 @@ namespace Vardius\Bundle\UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vardius\Bundle\UserBundle\Manager\UserManagerInterface;
 
 /**
  * Vardius\Bundle\UserBundle\Form\Type\UserType
@@ -20,13 +21,16 @@ class UserType extends AbstractType
 {
     /** @var  boolean */
     protected $addUsername;
+    /** @var  UserManagerInterface */
+    protected $userManager;
 
     /**
-     * @param boolean $addUsername
+     * @param UserManagerInterface $userManager
      */
-    function __construct($addUsername)
+    function __construct($userManager)
     {
-        $this->addUsername = $addUsername;
+        $this->userManager = $userManager;
+        $this->addUsername = $this->userManager->addUsername();
     }
 
     /**
@@ -45,7 +49,7 @@ class UserType extends AbstractType
                 'label' => 'user.form.email',
             ])
             ->add('plainPassword', 'repeated', [
-                'first_options'  => array('label' => 'user.form.first_name'),
+                'first_options' => array('label' => 'user.form.first_name'),
                 'second_options' => array('label' => 'user.form.second_name'),
                 'type' => 'password',
             ]);
@@ -57,7 +61,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Vardius\Bundle\UserBundle\Entity\User',
+            'data_class' => $this->userManager->getUserCLass(),
             'validation_groups' => function () {
                 return ($this->addUsername ? ['Default', 'username'] : ['Default']);
             }

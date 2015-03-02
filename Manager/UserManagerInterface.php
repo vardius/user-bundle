@@ -8,6 +8,7 @@
 namespace Vardius\Bundle\UserBundle\Manager;
 
 use Vardius\Bundle\UserBundle\Entity\User;
+use Vardius\Bundle\UserBundle\Entity\UserRepository;
 
 /**
  * Vardius\Bundle\UserBundle\Entity\UserManagerInterface
@@ -43,4 +44,14 @@ interface UserManagerInterface
      * @return string
      */
     public function getUserCLass();
+
+    /**
+     * @return boolean
+     */
+    public function addUsername();
+
+    /**
+     * @return UserRepository
+     */
+    public function getRepository();
 }

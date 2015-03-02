@@ -27,7 +27,6 @@ class Registration
 
     /**
      * @var boolean
-     * @Assert\NotBlank()
      * @Assert\True()
      */
     protected $termsAccepted;

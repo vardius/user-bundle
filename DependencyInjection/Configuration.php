@@ -30,6 +30,15 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
         $rootNode
             ->children()
+                ->scalarNode('user_class')
+                    ->defaultNull()
+                ->end()
+                ->scalarNode('user_form')
+                    ->defaultNull()
+                ->end()
+                ->scalarNode('user_edit_form')
+                    ->defaultNull()
+                ->end()
                 ->scalarNode('mail_from')
                     ->defaultNull()
                 ->end()

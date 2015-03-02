@@ -8,7 +8,6 @@
 namespace Vardius\Bundle\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -18,46 +17,22 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class EditUserType extends AbstractType
 {
-    /** @var  boolean */
-    protected $addUsername;
-
-    /**
-     * @param boolean $addUsername
-     */
-    function __construct($addUsername)
-    {
-        $this->addUsername = $addUsername;
-    }
-
     /**
      * @inheritDoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if ($this->addUsername) {
-            $builder->add('username');
-        }
 
         $builder
-            ->add('email', 'email', [
-                'label' => 'edit_user.form.email',
-            ])
+            ->remove('plainPassword')
             ->add('edit', 'submit', [
                 'label' => 'edit_user.form.button',
             ]);
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function getParent()
     {
-        $resolver->setDefaults([
-            'data_class' => 'Vardius\Bundle\UserBundle\Entity\User',
-            'validation_groups' => function () {
-                return ($this->addUsername ? ['Default', 'username'] : ['Default']);
-            }
-        ]);
+        return 'vardius_user';
     }
 
     /**

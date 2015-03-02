@@ -20,6 +20,8 @@
     <services>
         <service id="vardius_user.user_manager" class="%vardius_user.user_manager.class%">
             <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument>%vardius_user.user_class%</argument>
+            <argument>%vardius_user.username%</argument>
         </service>
         <service id="vardius_user.user_provider" class="%vardius_user.user_provider.class%">
             <argument type="service" id="vardius_user.user_manager"/>
@@ -31,16 +33,17 @@
         </service>
         <!--FORMS-->
         <service id="vardius_user.form.type.user" class="%vardius_user.form.type.user.class%">
-            <argument>%vardius_user.username%</argument>
+            <argument type="service" id="vardius_user.user_manager"/>
 
             <tag name="form.type" alias="vardius_user" />
         </service>
         <service id="vardius_user.form.type.edit_user" class="%vardius_user.form.type.edit_user.class%">
-            <argument>%vardius_user.username%</argument>
 
             <tag name="form.type" alias="vardius_edit_user" />
         </service>
         <service id="vardius_user.form.type.registration" class="%vardius_user.form.type.registration.class%">
+            <argument>%vardius_user.user_form%</argument>
+
             <tag name="form.type" alias="vardius_registration" />
         </service>
         <service id="vardius_user.form.type.change_password" class="%vardius_user.form.type.change_password.class%">

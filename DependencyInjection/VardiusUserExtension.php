@@ -31,6 +31,9 @@ class VardiusUserExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('vardius_user.user_class', $config['user_class']);
+        $container->setParameter('vardius_user.user_edit_form', $config['user_edit_form']);
+        $container->setParameter('vardius_user.user_form', $config['user_form']);
         $container->setParameter('vardius_user.username', $config['username']);
         $container->setParameter('vardius_user.mail_from', $config['mail_from']);
 
