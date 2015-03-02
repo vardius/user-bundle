@@ -60,4 +60,13 @@ class RegistrationController extends Controller
             'form' => $form->createView(),
         ];
     }
+
+    /**
+     * @return array
+     * @Template()
+     */
+    public function termsAction()
+    {
+        return [];
+    }
 }

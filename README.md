@@ -301,6 +301,19 @@ register your form as a service
         user_edit_form: acme_edit_user
 ```
 
+There is build in terms action,
+if you want user to be able read terms, you can for example link form label to it:
+
+``` twig
+    <a href="{{ path('account_register_terms') }}">{{ form_label(form.terms, null, {'label_attr': {'class': 'col-md-3 control-label'}}) }}</a>
+```
+
+to overrider terms, override its view.
+
+``` twig
+    {% extends '@VardiusUser/Registration/terms.html.twig' %}
+```
+
 RELEASE NOTES
 ==================================================
 **0.1.0**

@@ -14,6 +14,10 @@ account_register:
     path:     /register
     defaults: { _controller: VardiusUserBundle:Registration:register }
 
+account_register_terms:
+    path:     /terms
+    defaults: { _controller: VardiusUserBundle:Registration:terms }
+
 change_password:
     path:     /password-change
     defaults: { _controller: VardiusUserBundle:ChangePassword:changePassword }

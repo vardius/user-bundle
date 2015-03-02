@@ -21,8 +21,9 @@ edit_user:
         button: Edit
 
 registration:
+    terms: Read terms and conditions
     form:
-        terms: Terms
+        terms: Accept terms
         button: Register
 
 user:
