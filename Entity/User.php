@@ -23,7 +23,7 @@ use Vardius\Bundle\UserBundle\Validator\Constraints as VardiusAssert;
  * @ORM\Table(name="vardius_users")
  * @ORM\Entity(repositoryClass="Vardius\Bundle\UserBundle\Entity\UserRepository")
  */
-class User implements AdvancedUserInterface, \Serializable, EquatableInterface
+class User implements AdvancedUserInterface, \Serializable, EquatableInterface, UserInterface
 {
     /**
      * @var integer
@@ -132,7 +132,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return integer
+     * @inheritDoc
      */
     public function getId()
     {
@@ -148,8 +148,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param $username
-     * @return $this
+     * @inheritDoc
      */
     public function setUsername($username)
     {
@@ -159,7 +158,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getEmail()
     {
@@ -167,8 +166,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param $email
-     * @return $this
+     * @inheritDoc
      */
     public function setEmail($email)
     {
@@ -178,7 +176,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return mixed
+     * @inheritDoc
      */
     public function getPlainPassword()
     {
@@ -186,7 +184,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param string $password
+     * @inheritDoc
      */
     public function setPlainPassword($password)
     {
@@ -210,8 +208,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param $password
-     * @return $this
+     * @inheritDoc
      */
     public function setPassword($password)
     {
@@ -229,8 +226,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param Role $role
-     * @return $this
+     * @inheritDoc
      */
     public function addRole(Role $role)
     {
@@ -242,8 +238,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param ArrayCollection $roles
-     * @return $this
+     * @inheritDoc
      */
     public function setRoles(ArrayCollection $roles)
     {
@@ -256,8 +251,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param Role $role
-     * @return bool
+     * @inheritDoc
      */
     public function hasRole(Role $role)
     {
@@ -265,8 +259,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param Role $role
-     * @return $this
+     * @inheritDoc
      */
     public function removeRole(Role $role)
     {
@@ -314,7 +307,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return bool
+     * @inheritDoc
      */
     public function isCredentialsExpired()
     {
@@ -322,9 +315,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param boolean $boolean
-     *
-     * @return User
+     * @inheritDoc
      */
     public function setCredentialsExpired($boolean)
     {
@@ -342,7 +333,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return bool
+     * @inheritDoc
      */
     public function isExpired()
     {
@@ -350,8 +341,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param $boolean
-     * @return $this
+     * @inheritDoc
      */
     public function setExpired($boolean)
     {
@@ -361,8 +351,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param \DateTime $date
-     * @return $this
+     * @inheritDoc
      */
     public function setExpiresAt(\DateTime $date = null)
     {
@@ -372,7 +361,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return bool
+     * @inheritDoc
      */
     public function isLocked()
     {
@@ -380,8 +369,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param $boolean
-     * @return $this
+     * @inheritDoc
      */
     public function setLocked($boolean)
     {
@@ -457,7 +445,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function __toString()
     {

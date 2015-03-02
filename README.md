@@ -33,11 +33,14 @@ Installation
 
 Install the package through composer:
 
-    php composer.phar require vardius/user-bundle:*
+``` bash
+    $ php composer.phar require vardius/user-bundle:*
+```
 
 ### 2. Enable the VardiusUserBundle
 Enable the bundle in the kernel:
 
+``` php
     <?php
     // app/AppKernel.php
 
@@ -55,41 +58,51 @@ Enable the bundle in the kernel:
             
         // ...
     }
+```
     
 ### 3. Add roles
 Add roles to database:
 
+``` bash
     php app/console doctrine:fixtures:load --fixtures=src/Vardius/Bundle/UserBundle/DataFixtures/ORM --append
+```
 
 In a typical setup, you should always return at least 1 role from the getRoles() method. By convention,
 a role called ROLE_USER is usually returned. If you fail to return any roles,
 it may appear as if your user isn't authenticated at all.
 If you want to create user in custom method remember that you have to add `ROLE_USER` when creating user
 
+``` php
     $userRole = $em->getRepository('VardiusUserBundle:Role')->findOneByRole('ROLE_USER');
     $user->addRole($userRole);
+```
 
 ### 4. Configure the VardiusUserBundle
 
 If you want to enable username
 config.yml
 
+``` yaml
     #app/config/cinfig.yml
     
     vardius_user:
         username: true #default false
         email_from: some@email.com #default hostname
+```
         
 routing.yml
 
+``` yaml
     #app/config/routing.yml
     
     vardius_user:
         resource: "@VardiusUserBundle/Resources/config/routing.yml"
         prefix:   /
+```
         
 or enable some routes only:
 
+``` yaml
     #app/config/routing.yml
     
     login_route:
@@ -103,9 +116,11 @@ or enable some routes only:
     login_check:
         path:     /login_check
         defaults: { _controller: VardiusUserBundle:Security:loginCheck }
+```
         
 security.yml
 
+``` yaml
     #app/config/security.yml
     
     encoders:
@@ -144,6 +159,7 @@ security.yml
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/password-reset, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER }
+```
 
 RELEASE NOTES
 ==================================================
