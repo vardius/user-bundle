@@ -31,7 +31,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('user_class')
-                    ->defaultNull()
+                    ->isRequired(true)
                 ->end()
                 ->scalarNode('user_form')
                     ->defaultNull()

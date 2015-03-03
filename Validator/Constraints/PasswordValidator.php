@@ -19,26 +19,8 @@ class PasswordValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $value, $matches)) {
+        if (!preg_match('/^(?=.*\d)(?=.*[a-zA-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $value, $matches)) {
             $this->context->buildViolation($constraint->message)
-                ->setParameter('%string%', $value)
-                ->addViolation();
-            $this->context->buildViolation($constraint->message2)
-                ->setParameter('%string%', $value)
-                ->addViolation();
-            $this->context->buildViolation($constraint->message3)
-                ->setParameter('%string%', $value)
-                ->addViolation();
-            $this->context->buildViolation($constraint->message4)
-                ->setParameter('%string%', $value)
-                ->addViolation();
-            $this->context->buildViolation($constraint->message5)
-                ->setParameter('%string%', $value)
-                ->addViolation();
-            $this->context->buildViolation($constraint->message6)
-                ->setParameter('%string%', $value)
-                ->addViolation();
-            $this->context->buildViolation($constraint->message7)
                 ->setParameter('%string%', $value)
                 ->addViolation();
         }

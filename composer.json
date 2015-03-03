@@ -15,8 +15,7 @@
     ],
     "require": {
         "php": ">=5.5",
-        "symfony/symfony": "2.6.*",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*"
+        "symfony/symfony": "2.6.*"
     },
     "target-dir": "Vardius/Bundle/UserBundle",
     "autoload": {
@@ -24,7 +23,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "0.2.x-dev"
         }
     }
 }

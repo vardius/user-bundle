@@ -55,10 +55,10 @@ interface UserInterface
     public function setPassword($password);
 
     /**
-     * @param Role $role
+     * @param $role
      * @return $this
      */
-    public function addRole(Role $role);
+    public function addRole($role);
 
     /**
      * @param ArrayCollection $roles
@@ -67,16 +67,16 @@ interface UserInterface
     public function setRoles(ArrayCollection $roles);
 
     /**
-     * @param Role $role
+     * @param string $role
      * @return bool
      */
-    public function hasRole(Role $role);
+    public function hasRole($role);
 
     /**
-     * @param Role $role
+     * @param string $role
      * @return $this
      */
-    public function removeRole(Role $role);
+    public function removeRole($role);
 
     /**
      * @return bool

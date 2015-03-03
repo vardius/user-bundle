@@ -20,20 +20,10 @@ use Vardius\Bundle\UserBundle\Validator\Constraints as VardiusAssert;
  * Vardius\Bundle\UserBundle\Entity\User
  *
  * @author Rafał Lorenz <vardius@gmail.com>
- *
- * @ORM\Table(name="vardius_users")
- * @ORM\Entity(repositoryClass="Vardius\Bundle\UserBundle\Entity\UserRepository")
  */
-class User implements AdvancedUserInterface, \Serializable, EquatableInterface, VardiusUserInterface
+abstract class User implements AdvancedUserInterface, \Serializable, EquatableInterface, VardiusUserInterface
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+    const ROLE_DEFAULT = "ROLE_USER";
 
     /**
      * @var string
@@ -74,7 +64,7 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface, 
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+     * @ORM\Column(name="roles", type="array")
      */
     protected $roles;
 
@@ -130,14 +120,6 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface, 
         $this->locked = false;
         $this->expired = false;
         $this->credentialsExpired = false;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -223,14 +205,22 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface, 
      */
     public function getRoles()
     {
-        return $this->roles->toArray();
+        $roles = $this->roles->toArray();
+        $roles[] = self::ROLE_DEFAULT;
+
+        return array_unique($roles);
     }
 
     /**
      * @inheritDoc
      */
-    public function addRole(Role $role)
+    public function addRole($role)
     {
+        $role = strtoupper($role);
+        if ($role === self::ROLE_DEFAULT) {
+            return $this;
+        }
+
         if (!$this->roles->contains($role)) {
             $this->roles->add($role);
         }
@@ -254,17 +244,17 @@ class User implements AdvancedUserInterface, \Serializable, EquatableInterface, 
     /**
      * @inheritDoc
      */
-    public function hasRole(Role $role)
+    public function hasRole($role)
     {
-        return $this->roles->contains($role);
+        return $this->roles->contains(strtoupper($role));
     }
 
     /**
      * @inheritDoc
      */
-    public function removeRole(Role $role)
+    public function removeRole($role)
     {
-        $this->roles->removeElement($role);
+        $this->roles->removeElement(strtoupper($role));
 
         return $this;
     }

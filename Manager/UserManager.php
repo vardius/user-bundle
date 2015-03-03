@@ -9,6 +9,7 @@ namespace Vardius\Bundle\UserBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Vardius\Bundle\UserBundle\Entity\User;
 use Vardius\Bundle\UserBundle\Entity\UserRepository;
 
 /**
@@ -30,7 +31,6 @@ class UserManager implements UserManagerInterface
      */
     function __construct(EntityManager $entityManager, $class, $addUsername)
     {
-        $class = $class ?: 'VardiusUserBundle:User';
         $repository = $entityManager->getRepository($class);
 
         if (!$repository instanceof UserRepository) {
@@ -71,6 +71,17 @@ class UserManager implements UserManagerInterface
     public function getUserCLass()
     {
         return $this->repository->getClassName();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function supportsClass($class)
+    {
+        $userClass = $this->getUserCLass();
+
+        return $userClass === $class
+        || is_subclass_of($class, $userClass);
     }
 
     /**

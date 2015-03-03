@@ -1,7 +1,1 @@
-user.email.message: The password does not meet the requirements!
-user.email.message2: may contain letter and numbers';
-user.email.message3: must contain at least 1 number and 1 letter
-user.email.message4: at least one lowercase char
-user.email.message5: at least one uppercase char
-user.email.message6: may contain any of these characters: !@#$%
-user.email.message7: must be 8-20 characters
+user.email.message: The password does not meet the requirements! Password must contain at least 1 number and 1 letter and be 8-20 characters. It may contain any of these characters: !@#$%

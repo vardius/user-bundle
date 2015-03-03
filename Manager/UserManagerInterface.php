@@ -46,6 +46,12 @@ interface UserManagerInterface
     public function getUserCLass();
 
     /**
+     * @param $class
+     * @return boolean
+     */
+    public function supportsClass($class);
+
+    /**
      * @return boolean
      */
     public function addUsername();

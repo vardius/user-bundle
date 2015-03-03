@@ -41,8 +41,6 @@ class RegistrationController extends Controller
                 $encoded = $encoder->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($encoded);
 
-                $user->addRole($em->getRepository('VardiusUserBundle:Role')->findOneByRole('ROLE_USER'));
-
                 if ($user->getUsername() === null) {
                     $user->setUsername($user->getEmail());
                 }

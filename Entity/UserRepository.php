@@ -20,8 +20,7 @@ class UserRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('u')
-            ->select('u, r')
-            ->leftJoin('u.roles', 'r')
+            ->select('u')
             ->where('u.username = :username OR u.email = :email')
             ->setParameter('username', $username)
             ->setParameter('email', $username)
