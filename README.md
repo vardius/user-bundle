@@ -148,6 +148,7 @@ security.yml
             logout:
                 path:   logout_route
                 target: login_route
+                invalidate_session: true
             remember_me:
                 key:      "%secret%"
                 lifetime: 31536000 # 365 days in seconds
