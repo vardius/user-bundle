@@ -40,7 +40,6 @@ class Configuration implements ConfigurationInterface
                     ->defaultNull()
                 ->end()
                 ->scalarNode('mail_from')
-                    ->defaultNull()
                 ->end()
                 ->booleanNode('username')
                     ->defaultFalse()

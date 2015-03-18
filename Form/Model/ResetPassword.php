@@ -26,13 +26,6 @@ class ResetPassword
     protected $email;
 
     /**
-     * @var string
-     *
-     * @SecurityAssert\UserPassword()
-     */
-    protected $password;
-
-    /**
      * @return string
      */
     public function getEmail()
@@ -46,21 +39,5 @@ class ResetPassword
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
     }
 }

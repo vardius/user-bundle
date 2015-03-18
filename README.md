@@ -91,12 +91,15 @@ Create user class and extends Vardius\Bundle\UserBundle\Entity\User  as a BaseUs
 ```
 
 next register your class in config.yml
+and set an email address for password reset,
+this email will be show in message user gets as a sender.
 
 ``` yaml
     #app/config/cinfig.yml
     
     vardius_user:
         user_class: AcmeUserBundle:User
+        mail_from: example@email.com
 ```
 
 ### 4. Configure the VardiusUserBundle

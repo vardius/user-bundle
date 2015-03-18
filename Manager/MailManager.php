@@ -57,6 +57,6 @@ class MailManager
      */
     protected function getFrom()
     {
-        return ($this->from !== null ?: $this->requestStack->getMasterRequest()->getHost());
+        return ($this->from !== null ? $this->from : $this->requestStack->getMasterRequest()->getHost());
     }
 }

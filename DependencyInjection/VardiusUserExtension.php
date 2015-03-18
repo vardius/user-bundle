@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 /**
  * Vardius\Bundle\UserBundle\DependencyInjection\VardiusUserExtension
@@ -35,7 +36,13 @@ class VardiusUserExtension extends Extension
         $container->setParameter('vardius_user.user_edit_form', $config['user_edit_form']);
         $container->setParameter('vardius_user.user_form', $config['user_form']);
         $container->setParameter('vardius_user.username', $config['username']);
-        $container->setParameter('vardius_user.mail_from', $config['mail_from']);
+
+        $mailFrom = $config['mail_from'];
+        if(!\Swift_Validate::email($mailFrom)){
+            throw new InvalidParameterException('vardius_user.mail_from is not valid email address!');
+        }
+
+        $container->setParameter('vardius_user.mail_from', $mailFrom);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
