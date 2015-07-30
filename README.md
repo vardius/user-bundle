@@ -108,7 +108,7 @@ If you want to enable username
 config.yml
 
 ``` yaml
-    #app/config/cinfig.yml
+    #app/config/config.yml
     
     vardius_user:
         username: true #default false
