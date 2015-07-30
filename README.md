@@ -95,7 +95,7 @@ and set an email address for password reset,
 this email will be show in message user gets as a sender.
 
 ``` yaml
-    #app/config/cinfig.yml
+    #app/config/config.yml
     
     vardius_user:
         user_class: AcmeUserBundle:User
@@ -108,7 +108,7 @@ If you want to enable username
 config.yml
 
 ``` yaml
-    #app/config/cinfig.yml
+    #app/config/config.yml
     
     vardius_user:
         username: true #default false
@@ -229,7 +229,7 @@ register your form as a service
 next register your class in config.yml
 
 ``` yaml
-    #app/config/cinfig.yml
+    #app/config/config.yml
     
     vardius_user:
         user_form: acme_user
@@ -275,7 +275,7 @@ register your form as a service
 ```
 
 ``` yaml
-    #app/config/cinfig.yml
+    #app/config/config.yml
     
     vardius_user:
         user_edit_form: acme_edit_user
