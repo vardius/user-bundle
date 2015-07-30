@@ -95,7 +95,7 @@ and set an email address for password reset,
 this email will be show in message user gets as a sender.
 
 ``` yaml
-    #app/config/cinfig.yml
+    #app/config/config.yml
     
     vardius_user:
         user_class: AcmeUserBundle:User
