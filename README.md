@@ -275,7 +275,7 @@ register your form as a service
 ```
 
 ``` yaml
-    #app/config/cinfig.yml
+    #app/config/config.yml
     
     vardius_user:
         user_edit_form: acme_edit_user
