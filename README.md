@@ -229,7 +229,7 @@ register your form as a service
 next register your class in config.yml
 
 ``` yaml
-    #app/config/cinfig.yml
+    #app/config/config.yml
     
     vardius_user:
         user_form: acme_user
